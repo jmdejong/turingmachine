@@ -4,7 +4,7 @@ var Field = (function(){
 
 class Field {
     
-    constructor(grid, ant, cellwidth, cellheight, timing){
+    constructor(grid, ant, cellwidth, cellheight){
         this.grid = grid;
         var canvas = this.canvas = document.getElementById("outfield");
         this.ctx = canvas.getContext("2d");
@@ -12,10 +12,8 @@ class Field {
         this.cellHeight = cellheight;
         this.ant = ant;
         this.ant.place(grid, grid.width/2, grid.height/2);
-        this.timing = timing;
         canvas.addEventListener("mousedown", this.onClick.bind(this));
         canvas.addEventListener("contextmenu", function(e){e.preventDefault();});
-//         window.addEventListener("keydown", this.onKeypress.bind(this));
         document.getElementById("startstop").addEventListener("click", this.toggleRun.bind(this));
         document.getElementById("step").addEventListener("click", this.step.bind(this));
         document.getElementById("updatesource").addEventListener("click", this.setCode.bind(this));
@@ -53,7 +51,7 @@ class Field {
     }
     
     start(){
-        this.interval = setInterval(this.step.bind(this), this.timing);
+        this.interval = setInterval(this.step.bind(this), document.getElementById("speedinput").value);
     }
     
     stop(){
@@ -74,7 +72,7 @@ class Field {
         this.draw();
     }
     
-    onKeypress(e){
+    onKeypress(e){ // currently unused
         if (e.key == ' '){
             e.preventDefault();
             this.toggleRun();
