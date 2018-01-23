@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="bitgrid.js"></script>
+<script src="parser.js"></script>
+<script src="field.js"></script>
+<script src="turingmachine.js"></script>
+<script src="main.js"></script>
+<style>
+#outfield {
+    border: 3px solid gray;
+    float: left;
+}
+</style>
+</head>
+<body>
+<canvas id="outfield">
+</canvas>
+<textarea id="sourcecode" cols=40 rows=30>
+# states for the turing machine
+# This example is Langton's ant
+
+x+1
+^+1,vj12
+x+1
+>+1,&lt;-3
+x+1
+v+3,^-3
+
+&lt;j4,>-3
+x-1
+</textarea>
+<br />
+<button id="startstop">Start/Stop</button>
+<button id="step">Step</button>
+<button id="updatesource">Update Sourcecode</button>
+State: <span id="state" cols=5 rows=1>0</span>
+<button id="updatestate">Set State</button>
+</body>
+</html>
