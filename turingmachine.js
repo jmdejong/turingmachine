@@ -12,7 +12,6 @@ const ERROR = 0;
 const ACTION_MASK = 7;
 
 const JUMPPART_SHIFT = 3;
-// const RELATIVE_BIT = 8
 
 const BLOCK_SIZE = 4
 

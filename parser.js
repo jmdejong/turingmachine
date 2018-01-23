@@ -2,13 +2,6 @@
 var parseAsm = (function(){
 "use strict";
 
-// const UP = "^";
-// const DOWN = "v";
-// const LEFT = "<";
-// const RIGHT = ">";
-// const FLIP = "x";
-// const ERROR = "E";
-// const NOOP = "_";
 const NOOP = 0;
 const UP = 1;
 const DOWN = 2;
@@ -20,8 +13,6 @@ const ERROR = 0;
 const ACTION_MASK = 7;
 
 const JUMPPART_SHIFT = 3;
-// const RELATIVE_BIT = 8
-
 const BLOCK_SIZE = 4
 
 const STATE_MAX = 95;
@@ -66,10 +57,6 @@ function parsePart(part, line){
     if (!part || part == "E"){
         return NOOP | (ERROR << 3)
     }
-//     var p = part.split("j");
-//     if (p.length != 2){
-//         throw "Parse error on line "+line+" '"+part+"': Part has no action/jump separator";
-//     }
     var actionText = part[0];
     var action = actions[actionText];
     if (action == undefined){ // conveniently also compare for null
@@ -113,60 +100,5 @@ function parsePart(part, line){
 
 return parseAsm;
 })();
-    
-    
 
 
-// class State {
-//     
-//     constructor(actionF, jumpF, actionT, jumpT){
-//         if (actionT == undefined && jumpT == undefined){
-//             actionT = actionF;
-//             jumpT = jumpF;
-//         }
-//         this.actions = [actionF, actionT];
-//         this.jumps = [jumpF, jumpT];
-//     }
-//     
-//     getAction(gridVal){
-//         return this.actions[+(!!gridVal)];
-//     }
-//     
-//     getJump(gridVal){
-//         return this.jumps[+(!!gridVal)];
-//     }
-//     
-//     getDX(g){
-//         return (this.getAction(g) == RIGHT) - (this.getAction(g) == LEFT);
-//     }
-//     
-//     getDY(g){
-//         return (this.getAction(g) == DOWN) - (this.getAction(g) == UP);
-//     }
-//     
-//     getVal(g){
-//         return (this.getAction(g) == FLIP) ? !g : g;
-//     }
-// }
-
-
-// State.parse = function parse(code){
-//     self = new State();
-//     code = code.split("#")[0].trim();
-//     var parts = code.split(",");
-//     if (parts.length < 2){
-//         parts = [parts[0], parts[0]];
-//     }
-//     for (let i in parts){
-//         let part = parts[i];
-//         if (part == ERROR){
-//             self.actions[i] = NOOP;
-//             self.jumps[i] = ERROR, ERROR;
-//         } else {
-//             let p = parts[i].split("j");
-//             self.actions[i] = p[0].trim();
-//             self.jumps[i] = p[1] |0;
-//         }
-//     }
-//     return self;
-// }

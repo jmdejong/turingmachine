@@ -13,7 +13,10 @@ class Grid {
     }
     
     get(x, y){
-        return this.grid[x + y * width];
+        if (x >= 0 && y >= 0 && x < width && y < height){
+            return this.grid[x + y * width];
+        }
+        return null;
     }
     
     set(x, y, value){
