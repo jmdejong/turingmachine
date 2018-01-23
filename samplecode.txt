@@ -8,15 +8,15 @@ x-3, >+0 # go to start
 ^j16, ^j20 # 01..
 ^+4, ^+3 # 00..
 ^jE, ^jE # 10..
-^j24, ^jE # 11..
+^j24, ^j44 # 11..
 xj4, <+0 # increase memptr
 >+1, <+0 # decrease memptr
-E, x+1
->j4, E
+>j4, x+0
+
 ^+1, <+0 # decrease memory
 v+1, ^+0
-E, x+1
-v+3, E
+v+4, x+0
+
 ^+1, <+0 # increase memory
 x+1, ^+0
 >j4, v+0 # leave memory
@@ -26,11 +26,10 @@ v+2, v-1
 <+2, >+0
 <+0, >+2 
 E, ^-1 # loop forwards
-x+1, E # increase nesting
-E, v+2
-E, v+2
-x-1, >+0 # go back to code
-v+1
+x+0, v+3 # increase nesting
+E, v+1
+v+2
+x-2, >+0 # go back to code
 v+1
 ^+1, ^+2 # check if symbol is jump
 ^+2 # not jump
@@ -42,7 +41,26 @@ E, ^+1
 <+1, E # test nesting level
 E, <+1
 vj4, vj32 # end jump or test next
+^+1, <+0 # test whether memory is 1
+v+1, v+2
 >j4, E
-v-1, v+1
->+2, E
-^-2, <+0 # test whether memory is 1
+>+1, E
+<+1, >+0 # start loop
+^+1, x+0
+<+0, >+1
+x+0, v+1 # increase nesting
+<+1, >+0 # start scanning
+v+1, x+0
+v+1
+v+1
+^+1, ^+2 # check if symbol is jump
+^+2 # not jump
+^+1, ^+2 # maybe jump
+^j52 # not jump
+^+1, ^j48 # symbol is jump
+^+1, E
+<+0, x+1 # decrease nesting
+<+1, E # test nesting level
+E, <+1
+v+1, vj52 # end jump or test next
+xj4, >+0
