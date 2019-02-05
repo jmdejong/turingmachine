@@ -1,5 +1,7 @@
 # Turing machine
 
+https://troido.nl/turingmachine/
+
 The field is the 2d tape for the turing machine.
 
 Each line in the code box is a state. The lines are 1-indexed (0 is the error state).
